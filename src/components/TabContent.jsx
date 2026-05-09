@@ -3,7 +3,12 @@ import { AnimatePresence, motion } from "framer-motion";
 const content = {
   about: {
     title: "About Me",
-    body: "I am a final-year Bachelor of Computing student majoring in Software Engineering at Curtin University. I enjoy building practical software projects that combine frontend design, backend development, databases, deployment, and problem-solving.",
+    body: "Software Engineering Graduate heavy on project-based learning. Life is short, so I made a portfolio page. My repertoire consists of J cole and Westlife radio mixtapes.",
+    highlights: [
+      "Full Stack projects",
+      "Js Frameworks, RAG and Multi-Agent Systems",
+      "ML training models and path finding algorithms"
+    ]
   },
   projects: {
     title: "Projects",
@@ -47,6 +52,18 @@ function TabContent({ activeTab }) {
           <p className="mt-5 max-w-3xl text-base leading-8 text-slate-300">
             {currentContent.body}
           </p>
+          {currentContent.highlights && (
+            <div className="mt-8 grid gap-4 md:grid-cols-3">
+              {currentContent.highlights.map((highlight) => (
+                <div
+                  key={highlight}
+                  className="rounded-2xl border border-white/10 bg-white/10 p-5 text-sm font-medium text-slate-200"
+                >
+                  {highlight}
+                </div>
+              ))}
+            </div>
+          )}
         </motion.div>
       </AnimatePresence>
     </div>

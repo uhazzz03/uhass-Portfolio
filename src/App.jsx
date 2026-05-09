@@ -22,7 +22,7 @@ function App() {
           </h1>
 
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-300">
-            Software Engineering student building practical web applications, AI-inspired tools, and problem-solving projects.
+            Software Engineering Graduate building practical web applications, AI-inspired tools, and problem-solving projects.
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
