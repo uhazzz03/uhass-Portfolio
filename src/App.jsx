@@ -27,7 +27,7 @@ function App() {
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
-              href="/Uhass_Jayaweera_CV.pdf"
+              href="/UhassMedanJayaweera_CV.pdf"
               download
               className="inline-flex items-center gap-2 rounded-full bg-cyan-400 px-6 py-3 font-semibold text-slate-950 transition hover:bg-cyan-300"
             >
