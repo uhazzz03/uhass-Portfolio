@@ -1,4 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
+import { projects } from "../data/projects";
+import ProjectCard from "./ProjectCard";
 
 const content = {
   about: {
@@ -12,7 +14,7 @@ const content = {
   },
   projects: {
     title: "Projects",
-    body: "This section will showcase selected projects including Finance Tracker, VibeBot, CPU Scheduling Visualizer, EvacuateX, and my Capstone project.",
+    body: "A selection of practical software projects I have built or contributed to, covering full-stack development, AI-inspired tools, algorithm visualisation, deployment, and systems-focused problem solving.",
   },
   skills: {
     title: "Skills",
@@ -61,6 +63,13 @@ function TabContent({ activeTab }) {
                 >
                   {highlight}
                 </div>
+              ))}
+            </div>
+          )}
+          {activeTab === "projects" && (
+            <div className="mt-8 grid gap-5 md:grid-cols-2">
+              {projects.map((project) => (
+                <ProjectCard key={project.title} project={project} />
               ))}
             </div>
           )}
