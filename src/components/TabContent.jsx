@@ -1,6 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { projects } from "../data/projects";
 import ProjectCard from "./ProjectCard";
+import { skillGroups } from "../data/skills";
+import SkillGroup from "./SkillGroup";
 
 const content = {
   about: {
@@ -18,7 +20,7 @@ const content = {
   },
   skills: {
     title: "Skills",
-    body: "React, JavaScript, Node.js, Express, MySQL, Python, Java, C++, ASP.NET Core, Tailwind CSS, Git, GitHub, deployment, testing, and API development.",
+    body: "A summary of the technologies, languages, tools, and development areas I have used across university, and personal software projects.",
   },
   education: {
     title: "Education",
@@ -66,10 +68,19 @@ function TabContent({ activeTab }) {
               ))}
             </div>
           )}
+
           {activeTab === "projects" && (
             <div className="mt-8 grid gap-5 md:grid-cols-2">
               {projects.map((project) => (
                 <ProjectCard key={project.title} project={project} />
+              ))}
+            </div>
+          )}
+
+          {activeTab === "skills" && (
+            <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {skillGroups.map((group) => (
+                <SkillGroup key={group.category} group={group} />
               ))}
             </div>
           )}
