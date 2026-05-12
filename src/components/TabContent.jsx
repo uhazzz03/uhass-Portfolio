@@ -3,6 +3,10 @@ import { projects } from "../data/projects";
 import ProjectCard from "./ProjectCard";
 import { skillGroups } from "../data/skills";
 import SkillGroup from "./SkillGroup";
+import { education } from "../data/education";
+import EducationCard from "./Education";
+import { contactLinks } from "../data/contactLinks";
+import ContactCard from "./ContactCard";
 
 const content = {
   about: {
@@ -24,11 +28,11 @@ const content = {
   },
   education: {
     title: "Education",
-    body: "Bachelor of Computing, Software Engineering major at Curtin University. Also starting a Graduate Certificate of Artificial Intelligence with Monash Online.",
+    body:  "My academic background combines software engineering, practical computing projects, and upcoming postgraduate study in artificial intelligence.",
   },
   contact: {
     title: "Contact",
-    body: "This section will include links to email, LinkedIn, GitHub, and other professional profiles.",
+    body: "I am open to graduate software engineering opportunities, internships, collaborative projects, and professional networking. Feel free to reach out through any of the links below.",
   },
 };
 
@@ -84,6 +88,23 @@ function TabContent({ activeTab }) {
               ))}
             </div>
           )}
+
+          {activeTab === "education" && (
+            <div className="mt-8 grid gap-5 md:grid-cols-2">
+              {education.map((item) => (
+                <EducationCard key={item.institution} item={item} />
+              ))}
+            </div>
+          )}
+
+          {activeTab === "contact" && (
+            <div className="mt-8 grid gap-5 md:grid-cols-3">
+              {contactLinks.map((contact) => (
+                <ContactCard key={contact.label} contact={contact} />
+              ))}
+            </div>
+          )}
+
         </motion.div>
       </AnimatePresence>
     </div>
