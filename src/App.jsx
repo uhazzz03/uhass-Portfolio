@@ -64,7 +64,7 @@ function App() {
         <TabContent activeTab={activeTab} />
       </section>
 
-      <FloatingChatbot/>
+      <FloatingChatbot setActiveTab={setActiveTab}/>
     </main>
   );
 }

@@ -1,9 +1,6 @@
 export const suggestedQuestions = [
-  "Who is Uhass?",
   "Show me the projects",
-  "What skills does he have?",
-  "Where can I download the CV?",
-  "How can I contact him?",
+  "How can I contact",
 ];
 
 export function getChatResponse(message) {
@@ -14,7 +11,10 @@ export function getChatResponse(message) {
     input.includes("about") ||
     input.includes("uhass")
   ) {
-    return "Uhass Jayaweera is a Software Engineering Graduate heavy on project-based learning.. He focuses on full-stack development, practical software projects, deployment, and AI-related learning.";
+    return {
+        text: "Uhass Jayaweera is a Software Engineering Graduate heavy on project-based learning. I've opened the tab for you.",
+        tab: "about",
+    };
   }
 
   if (
@@ -24,7 +24,10 @@ export function getChatResponse(message) {
     input.includes("evacuatex") ||
     input.includes("capstone")
   ) {
-    return "You can view Uhass’s projects in the Projects tab. Key projects include Finance Tracker, VibeBot, CPU Scheduling Visualizer, EvacuateX, and the Sessional Manager Capstone project.";
+    return {
+        text: "I've opened the Projects tab and you can check everything out in detail now.",
+        tab: "projects",
+    }
   }
 
   if (
@@ -33,7 +36,10 @@ export function getChatResponse(message) {
     input.includes("stack") ||
     input.includes("language")
   ) {
-    return "Uhass has experience with React, Vite, Tailwind CSS, JavaScript, TypeScript, Vue.js, Node.js, Express, MySQL, Python, Java, C, C++, C#, ASP.NET Core, Postman, Git, GitHub, GitLab, Vercel, Render, Railway, training a NLP model and Streamlit Cloud.";
+    return {
+        text: "All the skills are categorized so you can find anything specific you are looking for in the tab I just opened.",
+        tab: "skills",
+    }
   }
 
   if (
@@ -50,7 +56,10 @@ export function getChatResponse(message) {
     input.includes("linkedin") ||
     input.includes("github")
   ) {
-    return "You can contact Uhass through the Contact tab, which includes email, LinkedIn, and GitHub links.";
+    return {
+        text: "You can contact Uhass through the Contact tab, which I have opened for you.",
+        tab: "contact",
+    }
   }
 
   if (
@@ -58,7 +67,10 @@ export function getChatResponse(message) {
     input.includes("curtin") ||
     input.includes("monash")
   ) {
-    return "Uhass is a Software Engineering graduate at Curtin University and is also starting a Graduate Certificate of Artificial Intelligence with Monash Online.";
+    return {
+        text: "His education is detailed in this particular tab I have opened for you.",
+        tab: "education",
+    }
   }
 
   return "I can help you explore this portfolio. Try asking about Uhass, his projects, skills, education, CV, or contact details.";

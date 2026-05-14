@@ -2,13 +2,13 @@ import { useState } from "react";
 import { MessageCircle, Send, X } from "lucide-react";
 import { suggestedQuestions, getChatResponse } from "../data/chatResponses";
 
-function FloatingChatbot() {
+function FloatingChatbot({ setActiveTab }) {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([
     {
       sender: "bot",
-      text: "Hi, I’m Trae, a portfolio assistant. Ask me anything :)",
+      text: "Hi, I am Trae, a portfolio assistant. Ask me anything :)",
     },
   ]);
 
@@ -22,9 +22,15 @@ function FloatingChatbot() {
       text: messageToSend,
     };
 
+    const response = getChatResponse(messageToSend);
+
+    if (response.tab) {
+        setActiveTab(response.tab);
+    }
+
     const botMessage = {
-      sender: "bot",
-      text: getChatResponse(messageToSend),
+        sender: "bot",
+        text: response.text,
     };
 
     setMessages((previousMessages) => [
@@ -44,7 +50,7 @@ function FloatingChatbot() {
   return (
     <div className="fixed bottom-6 right-6 z-50">
       {isOpen && (
-        <div className="mb-4 flex h-[520px] w-[350px] flex-col overflow-hidden rounded-3xl border border-white/10 bg-slate-950/90 shadow-2xl backdrop-blur-xl">
+        <div className="mb-4 flex h-130 w-87.5 flex-col overflow-hidden rounded-3xl border border-white/10 bg-slate-950/90 shadow-2xl backdrop-blur-xl">
           <div className="flex items-center justify-between border-b border-white/10 p-4">
             <div>
               <h3 className="font-bold text-white">Portfolio Assistant</h3>
