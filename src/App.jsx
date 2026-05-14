@@ -28,7 +28,7 @@ function App() {
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
-              href="/UhassMedanJayaweera_CV.pdf"
+              href={`${import.meta.env.BASE_URL}Uhass_Jayaweera_CV.pdf`}
               download
               className="inline-flex items-center gap-2 rounded-full bg-cyan-400 px-6 py-3 font-semibold text-slate-950 transition hover:bg-cyan-300"
             >
