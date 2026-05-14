@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Download } from "lucide-react";
 import TabNavigation from "./components/TabNavigation";
 import TabContent from "./components/TabContent";
+import FloatingChatbot from "./components/FloatingChatbot";
 
 function App() {
   const [activeTab, setActiveTab] = useState("about");
@@ -62,6 +63,8 @@ function App() {
         <TabNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
         <TabContent activeTab={activeTab} />
       </section>
+
+      <FloatingChatbot/>
     </main>
   );
 }

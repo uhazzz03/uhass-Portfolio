@@ -1,7 +1,7 @@
 export const skillGroups = [
   {
     category: "Frontend",
-    skills: ["React", "Vite", "Tailwind CSS", "JavaScript", "HTML", "CSS", "TypeScript"],
+    skills: ["React", "Vite", "Tailwind CSS", "JavaScript", "HTML", "CSS", "TypeScript", "Vue.js"],
   },
   {
     category: "Backend",
@@ -17,14 +17,14 @@ export const skillGroups = [
   },
   {
     category: "Testing & Tools",
-    skills: ["Postman", "Jest", "Supertest", "Git", "GitHub", "VS Code"],
+    skills: ["Postman", "Jest", "Supertest", "Git", "GitHub", "GitLab", "VS Code"],
   },
   {
     category: "Deployment",
-    skills: ["Vercel", "Render", "Railway", "Streamlit Cloud"],
+    skills: ["Vercel", "Render", "Railway", "Streamlit Cloud", "Github Pages"],
   },
   {
     category: "AI / Data",
-    skills: ["Python", "Pandas", "Spotify API", "AI Fundamentals", "Data Analysis"],
+    skills: ["Python", "Pandas", "Spotify API", "AI Fundamentals", "Data Analysis", "ML-Models", "sci-kit learning"],
   },
 ];
