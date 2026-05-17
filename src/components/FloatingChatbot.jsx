@@ -5,6 +5,7 @@ import { suggestedQuestions, getChatResponse } from "../data/chatResponses";
 function FloatingChatbot({ setActiveTab }) {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [messages, setMessages] = useState([
     {
       sender: "bot",
@@ -12,34 +13,59 @@ function FloatingChatbot({ setActiveTab }) {
     },
   ]);
 
-  function sendMessage(customMessage) {
+  async function sendMessage(customMessage) {
     const messageToSend = customMessage || input;
 
-    if (!messageToSend.trim()) return;
+    if (!messageToSend.trim() || isLoading) return;
 
     const userMessage = {
       sender: "user",
       text: messageToSend,
     };
 
-    const response = getChatResponse(messageToSend);
+    const ruleBasedResponse = getChatResponse(messageToSend);
 
-    if (response.tab) {
-        setActiveTab(response.tab);
+    if (ruleBasedResponse.tab) {
+      setActiveTab(ruleBasedResponse.tab);
     }
 
-    const botMessage = {
-        sender: "bot",
-        text: response.text,
-    };
-
-    setMessages((previousMessages) => [
-      ...previousMessages,
-      userMessage,
-      botMessage,
-    ]);
-
+    setMessages((previousMessages) => [...previousMessages, userMessage]);
     setInput("");
+    setIsLoading(true);
+
+    try {
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message: messageToSend }),
+      });
+
+      if (!response.ok) {
+        throw new Error("AI API request failed");
+      }
+
+      const data = await response.json();
+
+      const botMessage = {
+        sender: "bot",
+        text: data.reply,
+      };
+
+      setMessages((previousMessages) => [...previousMessages, botMessage]);
+    } catch (error) {
+      console.error("Using rule-based fallback:", error);
+
+      const fallbackMessage = {
+        sender: "bot",
+        text: ruleBasedResponse.text,
+      };
+
+      setMessages((previousMessages) => [...previousMessages, fallbackMessage]);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   function handleSubmit(event) {
@@ -84,6 +110,14 @@ function FloatingChatbot({ setActiveTab }) {
                 </div>
               </div>
             ))}
+
+            {isLoading && (
+              <div className="flex justify-start">
+                <div className="max-w-[85%] rounded-2xl bg-white/10 px-4 py-3 text-sm leading-6 text-slate-200">
+                  Thinking...
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="border-t border-white/10 p-4">
@@ -109,6 +143,7 @@ function FloatingChatbot({ setActiveTab }) {
 
               <button
                 type="submit"
+                disabled={isLoading}
                 className="rounded-full bg-cyan-400 p-3 text-slate-950 transition hover:bg-cyan-300"
               >
                 <Send size={16} />
