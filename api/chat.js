@@ -1,9 +1,8 @@
 import OpenAI from "openai";
+import dotenv from "dotenv";
 
-const client = new OpenAI({
-  // eslint-disable-next-line no-undef
-  apiKey: process.env.OPENAI_API_KEY,
-});
+dotenv.config({ path: ".env.local" });
+dotenv.config();
 
 const PORTFOLIO_CONTEXT = `
 You are Trae, the AI assistant on Uhass Medan Jayaweera's portfolio website.
@@ -84,6 +83,19 @@ export default async function handler(request, response) {
   if (request.method !== "POST") {
     return response.status(405).json({ error: "Method not allowed" });
   }
+
+  // eslint-disable-next-line no-undef
+  const apiKey = process.env.OPENAI_API_KEY;
+
+  if (!apiKey) {
+    return response.status(500).json({
+      error: "OPENAI_API_KEY is missing on the server",
+    });
+  }
+
+  const client = new OpenAI({
+    apiKey,
+  });
 
   try {
     const { message } = request.body || {};
