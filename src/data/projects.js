@@ -35,7 +35,7 @@ export const projects = [
     description:
       "A building evacuation path planner concept that explores pathfinding logic, native C++ interop, and API-based route calculation.",
     tech: ["C++", "ASP.NET Core", "C#", "CMake", "Pathfinding"],
-    github: "https://github.com/",
+    github: "https://github.com/uhazzz03/Building-Evacuation-Path-Planner",
     demo: "Local Installation and Deployment as still in-development.",
     featured: true,
   },
